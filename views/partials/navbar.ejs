@@ -1,0 +1,18 @@
+<nav class="navbar">
+    <a href="/" style="text-decoration: none; display: flex; align-items: center; gap: 0.6rem;">
+        <img src="/favicon.png" alt="PrimeBites Logo" style="height: 2.5rem; width: 2.5rem; border-radius: 50%; box-shadow: var(--shadow-float); object-fit: cover; border: 2px solid var(--surface-container-highest);">
+        <span style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--on-surface); letter-spacing: -0.05em;">PrimeBites</span>
+    </a>
+    <div class="nav-links" style="display: flex; align-items: center; gap: 0.5rem;">
+        <a href="/" style="font-weight: 600; color: var(--on-surface-variant); text-decoration: none; padding: 0.5rem 1rem; border-radius: var(--radius-md);">Home</a>
+        <a href="/help" style="font-weight: 600; color: var(--on-surface-variant); text-decoration: none; padding: 0.5rem 1rem; border-radius: var(--radius-md);">Help</a>
+        <% if(!currentUser) { %>
+            <a href="/login" class="btn btn-secondary">Login</a>
+            <a href="/register" class="btn btn-primary" style="margin-left: 1rem;">Register</a>
+        <% } else { %>
+
+            <a href="/orders/cart" class="btn btn-secondary" style="margin-right: 10px;">Cart (<%= cartCount %>)</a>
+            <a href="/logout" class="btn btn-secondary">Logout</a>
+        <% } %>
+    </div>
+</nav>

@@ -1,0 +1,21 @@
+<% if(success && success.length) { %>
+    <div class="flash-alert" style="background-color: var(--secondary-container); color: var(--on-secondary-container); padding: 1rem; border-radius: 8px; margin-bottom: 2rem; width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto; text-align: center; font-weight: 600; transition: opacity 0.5s ease;">
+        <%= success %>
+    </div>
+<% } %>
+
+<% if(error && error.length) { %>
+    <div class="flash-alert" style="background-color: #ffd3ce; color: var(--on-surface); padding: 1rem; border-radius: 8px; margin-bottom: 2rem; width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto; text-align: center; font-weight: 600; transition: opacity 0.5s ease;">
+        <%= error %>
+    </div>
+<% } %>
+
+<script>
+    setTimeout(function() {
+        const alerts = document.querySelectorAll('.flash-alert');
+        alerts.forEach(alert => {
+            alert.style.opacity = '0';
+            setTimeout(() => alert.remove(), 500); // Wait for fade out
+        });
+    }, 5000);
+</script>

@@ -1,0 +1,97 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="container section" style="max-width: 800px; padding-bottom: 8rem;">
+    <!-- Title -->
+    <h1 class="display-sm" style="margin-bottom: var(--spacing-10); color: var(--on-surface);">Your Cart</h1>
+
+    <!-- Cart Items Section -->
+    <div style="display: flex; flex-direction: column; gap: var(--spacing-10);">
+        <% if(cart.length === 0) { %>
+            <p class="body-md" style="color: var(--on-surface-variant);">Your cart feels a bit empty.</p>
+        <% } else { %>
+            <% for(let item of cart) { %>
+                <!-- Cart Item Container -->
+                <div style="display: flex; align-items: flex-start; gap: var(--spacing-6);">
+                    <div style="flex-grow: 1; display: flex; flex-direction: column; gap: var(--spacing-1);">
+                        <!-- Restaurant Name Label -->
+                        <% if (item.restaurantName) { %>
+                            <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); opacity: 0.8;">
+                                <%= item.restaurantName %>
+                            </span>
+                        <% } %>
+                        <!-- Item Title -->
+                        <h3 class="title-md" style="margin: 0; color: var(--on-surface);"><%= item.name %></h3>
+                        
+                        <!-- Price & Quantity Row -->
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-top: var(--spacing-2);">
+                            <span style="font-size: 1.125rem; font-weight: 700; color: var(--primary);">₹<%= (item.price * item.quantity).toFixed(2) %></span>
+                            
+                            <!-- Quantity Editor Pill -->
+                            <div style="display: flex; align-items: center; background-color: var(--surface-container-low); border-radius: var(--radius-xl); padding: 0.25rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05); gap: 0.5rem;">
+                                <form action="/orders/cart/<%= item.menuItem %>/update" method="POST" style="margin: 0;">
+                                    <input type="hidden" name="action" value="decrement">
+                                    <button type="submit" style="width: 2rem; height: 2rem; border-radius: 50%; background-color: var(--surface-container-lowest); color: var(--on-surface); border: none; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.15s ease;">
+                                        &minus;
+                                    </button>
+                                </form>
+                                
+                                <span style="font-weight: 700; color: var(--on-surface); min-width: 1rem; text-align: center;"><%= item.quantity %></span>
+                                
+                                <form action="/orders/cart/<%= item.menuItem %>/update" method="POST" style="margin: 0;">
+                                    <input type="hidden" name="action" value="increment">
+                                    <button type="submit" style="width: 2rem; height: 2rem; border-radius: 50%; background-color: var(--secondary-container); color: var(--on-secondary-container); border: none; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.15s ease;">
+                                        +
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+    </div>
+
+    <!-- Promotion Section -->
+    <% if(cart.length > 0) { %>
+        <div style="margin-top: var(--spacing-10); padding: var(--spacing-6); background-color: var(--surface-container-low); border-radius: var(--radius-lg); border: 1px solid var(--outline-variant); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--spacing-4);">
+            <div style="flex-grow: 1;">
+                <p style="font-size: 0.875rem; font-weight: 700; color: var(--on-surface); margin: 0;">Apply Promo Code</p>
+                <p style="font-size: 0.75rem; color: var(--on-surface-variant); margin: 0;">Save more on your gourmet meal</p>
+            </div>
+            <form action="#" style="display: flex; gap: var(--spacing-2); margin: 0;">
+                <input type="text" placeholder="Enter code" style="border-radius: var(--radius-sm); border: 1px solid var(--outline-variant); padding: 0.5rem; width: 120px; font-size: 0.875rem; background: var(--surface-container-lowest); color: var(--on-surface); outline: none;">
+                <button type="button" style="background-color: var(--primary); color: var(--on-primary); border: none; border-radius: var(--radius-sm); padding: 0.5rem 1rem; font-weight: 600; font-size: 0.875rem; cursor: pointer;">Apply</button>
+            </form>
+        </div>
+    <% } %>
+
+    <!-- Order Summary Section -->
+    <% if(cart.length > 0) { %>
+        <div style="margin-top: var(--spacing-20); padding-top: var(--spacing-10); border-top: 1px solid var(--outline-variant);">
+            <h2 class="title-md" style="margin-bottom: var(--spacing-4); color: var(--on-surface);">Order Summary</h2>
+            
+            <div style="display: flex; flex-direction: column; gap: var(--spacing-4);">
+                <div style="display: flex; justify-content: space-between; align-items: center; color: var(--on-surface-variant);">
+                    <span class="body-md">Subtotal</span>
+                    <span style="font-weight: 600; color: var(--on-surface);">₹<%= total.toFixed(2) %></span>
+                </div>
+                <!-- Delivery / Tax (Optional mocks, skipping to keep logic same) -->
+                <div style="padding-top: var(--spacing-4); display: flex; justify-content: space-between; align-items: center; font-size: 1.25rem; font-weight: 800; color: var(--on-surface);">
+                    <span>Total</span>
+                    <span>₹<%= total.toFixed(2) %></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Checkout Bar inspired by Stitch's bottom action bar -->
+        <div style="margin-top: var(--spacing-10);">
+            <form action="/orders/checkout" method="POST">
+                <button type="submit" style="width: 100%; height: 3.5rem; border-radius: var(--radius-xl); background: linear-gradient(135deg, var(--primary), var(--primary-container)); color: var(--on-primary); font-family: var(--font-display); font-weight: 700; font-size: 1.125rem; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: var(--spacing-2); box-shadow: var(--shadow-float); transition: transform 0.2s ease;">
+                    <span>Checkout</span>
+                    <span style="width: 4px; height: 4px; background-color: rgba(255, 239, 235, 0.4); border-radius: 50%;"></span>
+                    <span>₹<%= total.toFixed(2) %></span>
+                </button>
+            </form>
+        </div>
+    <% } %>
+</div>

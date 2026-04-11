@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+:root {
+    --surface: #fff4f3;
+    --surface-container-low: #ffedeb;
+    --surface-container-lowest: #ffffff;
+    --surface-container-highest: #ffd3ce;
+    --primary: #a03a0f;
+    --primary-container: #fe7e4f;
+    --on-primary: #ffefeb;
+    --secondary: #00694c;
+    --secondary-container: #80f9ca;
+    --on-secondary-container: #005e44;
+    --tertiary: #6e5900;
+    --tertiary-container: #fbd12d;
+    --on-surface: #4e211e;
+    --on-surface-variant: #834d48;
+    --outline-variant: rgba(224, 156, 149, 0.15);
+    
+    --font-display: 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'Be Vietnam Pro', sans-serif;
+
+    --spacing-1: 0.35rem; --spacing-2: 0.70rem; --spacing-4: 1.4rem;
+    --spacing-6: 2rem; --spacing-10: 3.5rem; --spacing-12: 4rem; --spacing-20: 7rem;
+
+    --radius-sm: 0.5rem; --radius-md: 1rem; --radius-lg: 2rem; --radius-xl: 3rem;
+    --shadow-float: 0 24px 32px rgba(78, 33, 30, 0.06);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background-color: var(--surface); color: var(--on-surface); font-family: var(--font-body); line-height: 1.5; }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 700; }
+
+.display-lg { font-size: 3.5rem; line-height: 1.1; letter-spacing: -0.02em; }
+.display-sm { font-size: 2.5rem; line-height: 1.2; letter-spacing: -0.01em; }
+.headline-lg { font-size: 2rem; line-height: 1.3; }
+.headline-sm { font-size: 1.5rem; line-height: 1.3; }
+.title-md { font-size: 1.25rem; font-weight: 600; }
+.body-md { font-size: 1rem; }
+.body-sm { font-size: 0.875rem; color: var(--on-surface-variant); }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-6); }
+.section { margin-top: var(--spacing-20); margin-bottom: var(--spacing-20); }
+.glass-panel { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(24px); }

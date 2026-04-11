@@ -1,0 +1,258 @@
+<% layout('layouts/boilerplate')%>
+
+    <div class="container section">
+
+        <div
+            style="margin-bottom: var(--spacing-12); margin-top: -1.5rem; padding-top: 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--spacing-6);">
+            <div style="flex: 1; min-width: 300px;">
+                <h1 class="display-lg"
+                    style="color: var(--on-surface); margin-bottom: var(--spacing-4); letter-spacing: -0.02em; font-size: 4rem; line-height: 1.1;">
+                    How can we <span style="color: var(--primary); font-style: italic;">help</span><br />you?
+                </h1>
+                <p class="body-md"
+                    style="color: var(--on-surface-variant); max-width: 350px; margin-top: var(--spacing-2);">
+                    Find answers to common questions about your PrimeBites experience or reach out to our culinary
+                    support team.
+                </p>
+            </div>
+            <div style="flex: 1; min-width: 300px; display: flex; justify-content: flex-end;">
+                <div
+                    style="background-color: var(--surface-container-lowest); padding: 0.75rem 1.5rem; border-radius: 3rem; display: flex; align-items: center; width: 100%; max-width: 400px; box-shadow: var(--shadow-float);">
+                    <svg width="20" height="20" fill="none" stroke="var(--primary)" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"
+                        style="margin-right: 0.5rem;">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" placeholder="Search topics, keywords..."
+                        style="border: none; background: transparent; outline: none; width: 100%; color: var(--on-surface-variant); font-family: var(--font-body); font-size: 0.9rem;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Popular Topics -->
+        <div style="margin-bottom: var(--spacing-12);">
+            <h3 class="headline-sm" style="color: var(--on-surface); margin-bottom: var(--spacing-6);">Popular Topics
+            </h3>
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--spacing-6);">
+
+                <div
+                    style="background-color: var(--surface-container-lowest); padding: var(--spacing-6); border-radius: 2rem; display: flex; flex-direction: column; gap: var(--spacing-2); box-shadow: var(--shadow-float);">
+                    <div
+                        style="background-color: var(--surface-container-low); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: var(--spacing-2);">
+                        <svg width="24" height="24" fill="none" stroke="var(--primary)" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="title-md" style="color: var(--on-surface);">Order Tracking</h4>
+                    <p class="body-sm" style="color: var(--on-surface-variant);">Real-time updates on your gourmet
+                        deliveries.</p>
+                </div>
+
+                <div
+                    style="background-color: var(--surface-container-lowest); padding: var(--spacing-6); border-radius: 2rem; display: flex; flex-direction: column; gap: var(--spacing-2); box-shadow: var(--shadow-float);">
+                    <div
+                        style="background-color: var(--surface-container-low); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: var(--spacing-2);">
+                        <svg width="24" height="24" fill="none" stroke="var(--primary)" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                            </path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                    </div>
+                    <h4 class="title-md" style="color: var(--on-surface);">Refunds & Cancellations</h4>
+                    <p class="body-sm" style="color: var(--on-surface-variant);">Easy steps to manage your order
+                        adjustments.</p>
+                </div>
+
+                <div
+                    style="background-color: var(--surface-container-lowest); padding: var(--spacing-6); border-radius: 2rem; display: flex; flex-direction: column; gap: var(--spacing-2); box-shadow: var(--shadow-float);">
+                    <div
+                        style="background-color: var(--surface-container-low); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: var(--spacing-2);">
+                        <svg width="24" height="24" fill="none" stroke="var(--primary)" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <circle cx="12" cy="7" r="4"></circle>
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        </svg>
+                    </div>
+                    <h4 class="title-md" style="color: var(--on-surface);">Account Settings</h4>
+                    <p class="body-sm" style="color: var(--on-surface-variant);">Manage your profile, addresses, and
+                        preferences.</p>
+                </div>
+
+                <div
+                    style="background-color: var(--surface-container-lowest); padding: var(--spacing-6); border-radius: 2rem; display: flex; flex-direction: column; gap: var(--spacing-2); box-shadow: var(--shadow-float);">
+                    <div
+                        style="background-color: var(--surface-container-low); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: var(--spacing-2);">
+                        <svg width="24" height="24" fill="none" stroke="var(--primary)" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg>
+                    </div>
+                    <h4 class="title-md" style="color: var(--on-surface);">PrimeBites Rewards</h4>
+                    <p class="body-sm" style="color: var(--on-surface-variant);">Unlocking perks and redeeming your
+                        foodie points.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div style="margin-bottom: var(--spacing-12); max-width: 800px;">
+            <h3 class="headline-sm" style="color: var(--on-surface); margin-bottom: var(--spacing-4);">Frequently Asked
+                Questions</h3>
+            <p class="body-md"
+                style="color: var(--on-surface-variant); margin-bottom: var(--spacing-8); line-height: 1.6;">Can't find
+                what you're looking for?<br />These are the most common inquiries from our community.</p>
+            <br>
+            <div style="display: flex; flex-direction: column; gap: var(--spacing-4);" id="faq-container">
+            
+            <div class="faq-item" style="background-color: var(--surface-container-lowest); padding: var(--spacing-6); border-radius: 2rem; display: flex; flex-direction: column; gap: var(--spacing-4); cursor: pointer; box-shadow: var(--shadow-float); transition: background-color 0.3s ease;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="title-md" style="color: var(--on-surface); font-weight: 600;">How do I change my delivery address?</span>
+                    <svg width="24" height="24" fill="none" stroke="var(--on-surface-variant)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <polyline class="faq-icon" points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="faq-content" style="display: none;">
+                    <p class="body-md" style="color: var(--on-surface-variant); line-height: 1.6;">
+                        You can update your delivery address from your Account Settings page. Please note that changing your address after an order has been placed requires contacting our support team directly to ensure successful routing.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item" style="background-color: var(--surface-container-lowest); padding: var(--spacing-6); border-radius: 2rem; display: flex; flex-direction: column; gap: var(--spacing-4); cursor: pointer; box-shadow: var(--shadow-float); transition: background-color 0.3s ease;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="title-md" style="color: var(--on-surface); font-weight: 600;">What happens if my food is late?</span>
+                    <svg width="24" height="24" fill="none" stroke="var(--on-surface-variant)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <polyline class="faq-icon" points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="faq-content" style="display: none;">
+                    <p class="body-md" style="color: var(--on-surface-variant); line-height: 1.6;">
+                        At PrimeBites, we prioritize freshness. If your order arrives more than 20 minutes past the estimated delivery window, we automatically credit 50% of the order value back to your account as a Gesture of Care.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item" style="background-color: var(--surface-container-lowest); padding: var(--spacing-6); border-radius: 2rem; display: flex; flex-direction: column; gap: var(--spacing-4); cursor: pointer; box-shadow: var(--shadow-float); transition: background-color 0.3s ease;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="title-md" style="color: var(--on-surface); font-weight: 600;">Are there vegetarian options in all menus?</span>
+                    <svg width="24" height="24" fill="none" stroke="var(--on-surface-variant)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <polyline class="faq-icon" points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="faq-content" style="display: none;">
+                    <p class="body-md" style="color: var(--on-surface-variant); line-height: 1.6;">
+                        Absolutely! We partner with restaurants to ensure diverse dietary options. You can easily filter any restaurant's menu by selecting the "Vegetarian" or "Vegan" dietary tags.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item" style="background-color: var(--surface-container-lowest); padding: var(--spacing-6); border-radius: 2rem; display: flex; flex-direction: column; gap: var(--spacing-4); cursor: pointer; box-shadow: var(--shadow-float); transition: background-color 0.3s ease;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="title-md" style="color: var(--on-surface); font-weight: 600;">How do I apply a promo code?</span>
+                    <svg width="24" height="24" fill="none" stroke="var(--on-surface-variant)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <polyline class="faq-icon" points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="faq-content" style="display: none;">
+                    <p class="body-md" style="color: var(--on-surface-variant); line-height: 1.6;">
+                        During the checkout process, simply enter your promo code in the "Apply Coupon" field. The discount will be immediately reflected in your order total before you confirm your payment.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item" style="background-color: var(--surface-container-lowest); padding: var(--spacing-6); border-radius: 2rem; display: flex; flex-direction: column; gap: var(--spacing-4); cursor: pointer; box-shadow: var(--shadow-float); transition: background-color 0.3s ease;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="title-md" style="color: var(--on-surface); font-weight: 600;">Can I schedule orders in advance?</span>
+                    <svg width="24" height="24" fill="none" stroke="var(--on-surface-variant)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <polyline class="faq-icon" points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="faq-content" style="display: none;">
+                    <p class="body-md" style="color: var(--on-surface-variant); line-height: 1.6;">
+                        Yes! You can schedule a gourmet delivery up to 7 days in advance. At checkout, change the delivery mode from "ASAP" to "Schedule" and select your preferred date and 30-minute delivery window.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+        <!-- Contact CTA -->
+        <div
+            style="margin: var(--spacing-10) auto var(--spacing-12); max-width: 900px; background-color: var(--on-surface); border-radius: 3rem; padding: 4rem; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: var(--spacing-2); overflow: hidden; position: relative;">
+            <!-- decorative background arc -->
+            <div
+                style="position: absolute; right: -10%; bottom: -20%; width: 50%; height: 150%; border: 1px solid rgba(255,255,255,0.05); border-radius: 50%; pointer-events: none;">
+            </div>
+
+            <div style="position: relative; z-index: 1;">
+                <h3 class="display-sm"
+                    style="color: var(--surface); margin-bottom: var(--spacing-4); font-weight: 700;">Still need
+                    assistance?</h3>
+                <p class="body-md" style="color: var(--surface-container-highest); max-width: 600px; line-height: 1.6;">
+                    Our support curators are online and ready to help you<br />with your gourmet journey.</p>
+            </div>
+            <div
+                style="display: flex; gap: var(--spacing-6); position: relative; z-index: 1; margin-top: var(--spacing-8); flex-wrap: wrap;">
+                <button class="btn btn-primary"
+                    style="border-radius: 2rem; background: var(--primary); padding: 0.75rem 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--on-primary); border: none; font-size: 1rem; cursor: pointer;">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    Start Live Chat
+                </button>
+                <button class="btn"
+                    style="border-radius: 2rem; background: var(--surface-container-lowest); padding: 0.75rem 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--on-surface); border: none; font-size: 1rem; cursor: pointer;">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Email Support
+                </button>
+            </div>
+        </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const content = item.querySelector('.faq-content');
+                const iconPath = item.querySelector('.faq-icon');
+                const isOpen = content.style.display === 'block';
+
+                // Close all initially to create accordion effect
+                document.querySelectorAll('.faq-content').forEach(c => c.style.display = 'none');
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.style.backgroundColor = 'var(--surface-container-lowest)';
+                    i.querySelector('.faq-icon').setAttribute('points', '6 9 12 15 18 9'); // down arrow
+                });
+
+                // Open this one if it was closed
+                if (!isOpen) {
+                    content.style.display = 'block';
+                    item.style.backgroundColor = 'var(--surface-container-highest)'; 
+                    iconPath.setAttribute('points', '18 15 12 9 6 15'); // up arrow
+                }
+            });
+        });
+
+        // Initialize first item as open
+        if(faqItems.length > 0) {
+            faqItems[1].click(); // Open the second one "What happens if my food is late?" as a default like the design. Or first one.
+        }
+    });
+</script>

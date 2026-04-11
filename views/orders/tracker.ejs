@@ -1,0 +1,45 @@
+<% layout('layouts/boilerplate')%>
+
+<div style="display: flex; align-items: center; justify-content: center; min-height: 70vh;">
+    <div class="card" style="width: 100%; max-width: 500px; padding: var(--spacing-6); text-align: center;">
+        <h1 class="headline-lg" style="margin-bottom: var(--spacing-2);">Order Status</h1>
+        <p class="body-sm" style="margin-bottom: var(--spacing-6);">Order #<%= order._id.toString().substring(18) %></p>
+        
+        <div style="background: var(--surface-container-low); padding: var(--spacing-4); border-radius: var(--radius-md); margin-bottom: var(--spacing-6);">
+            <h2 class="display-sm" style="color: var(--primary);"><%= order.status %></h2>
+        </div>
+
+        <p class="body-md" style="margin-bottom: var(--spacing-6);">Your food is being crafted with care. <br>Our restaurant is keeping you updated.</p>
+
+        <% if(currentUser && currentUser.role === 'restaurant') { %>
+            <hr style="border:none; border-top: 1px solid var(--outline-variant); margin: var(--spacing-4) 0;">
+            <h3 class="title-md" style="text-align: left; margin-bottom: var(--spacing-2);">Admin Controls</h3>
+            <div style="display: flex; justify-content: space-between; gap: 10px;">
+                <form action="/orders/<%=order._id%>/status?_method=PATCH" method="POST" style="flex: 1;">
+                    <input type="hidden" name="status" value="Processing">
+                    <button class="btn btn-secondary" style="width: 100%;">Process</button>
+                </form>
+                <form action="/orders/<%=order._id%>/status?_method=PATCH" method="POST" style="flex: 1;">
+                    <input type="hidden" name="status" value="Delivering">
+                    <button class="btn btn-primary" style="width: 100%;">Deliver</button>
+                </form>
+            </div>
+            <form action="/orders/<%=order._id%>/status?_method=PATCH" method="POST" style="margin-top: 10px;">
+                <input type="hidden" name="status" value="Completed">
+                <button class="btn btn-secondary" style="width: 100%; color: var(--secondary);">Mark Completed</button>
+            </form>
+        <% } %>
+    </div>
+</div>
+
+<script>
+    // Simple script to auto-refresh the page for customers to see updates
+    const isRestaurant = "<%= currentUser && currentUser.role === 'restaurant' %>" === "true";
+    const isCompleted = "<%= order.status %>" === "Completed";
+    
+    if (!isRestaurant && !isCompleted) {
+        setTimeout(() => {
+            window.location.reload();
+        }, 5000);
+    }
+</script>

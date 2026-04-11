@@ -1,0 +1,10 @@
+<% layout('layouts/boilerplate')%>
+<div class="container section">
+    <div style="background-color: #ffd3ce; color: #4e211e; padding: 2rem; border-radius: 1rem;">
+        <h1 class="headline-lg">Oops! Something went wrong.</h1>
+        <p class="body-md" style="margin-top: 1rem;"><%= err.message %></p>
+        <% if (process.env.NODE_ENV !== 'production') { %>
+            <pre style="margin-top: 1rem; background: rgba(255,255,255,0.5); padding: 1rem; overflow-x: auto; font-family: monospace; font-size: 0.8rem;"><%= err.stack %></pre>
+        <% } %>
+    </div>
+</div>

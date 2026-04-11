@@ -1,0 +1,71 @@
+<% layout('layouts/boilerplate')%>
+
+<div style="display: flex; align-items: center; justify-content: center; min-height: 70vh; margin-top: var(--spacing-6);">
+    <div class="card" style="width: 100%; max-width: 500px; padding: var(--spacing-6);">
+        <h1 class="headline-lg" style="margin-bottom: var(--spacing-2); color: var(--primary);">Join the Table</h1>
+        <p class="body-sm" style="margin-bottom: var(--spacing-6);">Create a PrimeBites account to start ordering or hosting.</p>
+        
+        <form action="/register" method="POST" enctype="multipart/form-data" id="registerForm">
+            <div class="input-group">
+                <label class="input-label" for="username">Username / Name</label>
+                <input type="text" id="username" name="username" class="input-field" required autofocus>
+            </div>
+            <div class="input-group">
+                <label class="input-label" for="email">Email</label>
+                <input type="email" id="email" name="email" class="input-field" required>
+            </div>
+            <div class="input-group">
+                <label class="input-label" for="password">Password</label>
+                <input type="password" id="password" name="password" class="input-field" required>
+            </div>
+            <div class="input-group">
+                <label class="input-label" for="role">I am a...</label>
+                <select id="role" name="role" class="input-field">
+                    <option value="customer">Hungry Customer</option>
+                    <option value="restaurant">Restaurant Owner</option>
+                </select>
+            </div>
+
+            <!-- DYNAMIC RESTAURANT FIELDS -->
+            <div id="restaurantFields" style="display: none; background: var(--surface-container-low); padding: var(--spacing-4); border-radius: var(--radius-md); margin-bottom: var(--spacing-4);">
+                <h3 class="title-md" style="margin-bottom: var(--spacing-2);">Restaurant Details</h3>
+                <div class="input-group">
+                    <label class="input-label" for="restaurantName">Restaurant Name</label>
+                    <input type="text" id="restaurantName" name="restaurantName" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label class="input-label" for="description">Short Description / Catchphrase</label>
+                    <input type="text" id="description" name="description" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label class="input-label" for="image">Banner Image Cover</label>
+                    <input type="file" id="image" name="image" class="input-field">
+                </div>
+            </div>
+
+            <button class="btn btn-primary" style="width: 100%;">Create Account</button>
+        </form>
+        <p class="body-sm" style="text-align: center; margin-top: var(--spacing-4);">
+            Already have an account? <a href="/login" style="color: var(--primary);">Log In</a>
+        </p>
+    </div>
+</div>
+
+<script>
+    const roleSelect = document.getElementById('role');
+    const restaurantFields = document.getElementById('restaurantFields');
+    const rName = document.getElementById('restaurantName');
+    const rDesc = document.getElementById('description');
+
+    roleSelect.addEventListener('change', function() {
+        if(this.value === 'restaurant') {
+            restaurantFields.style.display = 'block';
+            rName.required = true;
+            rDesc.required = true;
+        } else {
+            restaurantFields.style.display = 'none';
+            rName.required = false;
+            rDesc.required = false;
+        }
+    });
+</script>

@@ -1,0 +1,56 @@
+<% layout('layouts/boilerplate')%>
+
+<% 
+const bgUrl = (restaurant.image && restaurant.image.url) ? restaurant.image.url : ''; 
+const divStyle = `height: 350px; width: 100%; position: relative; border-radius: 0 0 3rem 3rem; overflow: hidden;` + (bgUrl ? ` background: url('${bgUrl}') center/cover;` : '');
+%>
+<div <%- `style="${divStyle}"` %>>
+    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(78, 33, 30, 0.9)); padding: var(--spacing-10) var(--spacing-6); color: #fffefb;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <h1 class="display-lg" style="margin-bottom: var(--spacing-2); color: #fff;"><%= restaurant.restaurantName %></h1>
+            <p class="body-md" style="font-size: 1.1rem; opacity: 0.9;"><%= restaurant.description %> &nbsp;|&nbsp; <span style="color: var(--tertiary-container); font-weight: bold;"><%= restaurant.rating %> ★</span></p>
+        </div>
+    </div>
+</div>
+
+<div class="container section" style="margin-top: var(--spacing-10);">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--spacing-10);">
+        <h2 class="headline-lg">Our Collection</h2>
+        <div class="filters">
+            <% if(currentUser && currentUser._id.equals(restaurant._id)) { %>
+                <a href="/menu/new" class="btn btn-primary" style="padding: 0.5rem 1rem;">+ Add New Dish</a>
+            <% } %>
+        </div>
+    </div>
+
+    <% if(items.length === 0) { %>
+        <div style="background: var(--surface-container-low); padding: var(--spacing-6); border-radius: var(--radius-lg); text-align: center;">
+            <p class="body-md">This restaurant hasn't added any dishes yet!</p>
+        </div>
+    <% } else { %>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--spacing-10);">
+            <% for(let item of items) { %>
+                <div class="card">
+                    <% if(item.image && item.image.url) { %>
+                        <img src="<%= item.image.url %>" alt="<%= item.name %>" class="card-img">
+                    <% } %>
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--spacing-2);">
+                        <h3 class="title-md"><%= item.name %></h3>
+                        <span style="font-weight: 700; color: var(--primary);">₹<%= item.price.toFixed(2) %></span>
+                    </div>
+                    <p class="body-sm" style="margin-bottom: var(--spacing-4);"><%= item.description %></p>
+                    
+                    <% if(currentUser && currentUser._id.equals(restaurant._id)) { %>
+                        <form action="/menu/<%=item._id%>?_method=DELETE" method="POST">
+                            <button class="btn btn-secondary" style="width: 100%; color: red;">Delete Dish</button>
+                        </form>
+                    <% } else { %>
+                        <form action="/orders/cart/<%=item._id%>" method="POST">
+                            <button class="btn btn-secondary" style="width: 100%;">Add to Cart</button>
+                        </form>
+                    <% } %>
+                </div>
+            <% } %>
+        </div>
+    <% } %>
+</div>

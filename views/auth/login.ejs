@@ -1,0 +1,23 @@
+<% layout('layouts/boilerplate')%>
+
+<div style="display: flex; align-items: center; justify-content: center; min-height: 70vh;">
+    <div class="card" style="width: 100%; max-width: 400px; padding: var(--spacing-6);">
+        <h1 class="headline-lg" style="margin-bottom: var(--spacing-2); color: var(--primary);">Welcome Back</h1>
+        <p class="body-sm" style="margin-bottom: var(--spacing-6);">Log in to continue exploring curated tastes.</p>
+        
+        <form action="/login" method="POST">
+            <div class="input-group">
+                <label class="input-label" for="username">Email / Username</label>
+                <input type="text" id="username" name="username" class="input-field" required autofocus>
+            </div>
+            <div class="input-group">
+                <label class="input-label" for="password">Password</label>
+                <input type="password" id="password" name="password" class="input-field" required>
+            </div>
+            <button class="btn btn-primary" style="width: 100%;">Sign In</button>
+        </form>
+        <p class="body-sm" style="text-align: center; margin-top: var(--spacing-4);">
+            Don't have an account? <a href="/register" style="color: var(--primary);">Register</a>
+        </p>
+    </div>
+</div>

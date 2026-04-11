@@ -1,0 +1,32 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="container section">
+    <div class="card" style="margin: 0 auto; max-width: 600px;">
+        <h1 class="headline-lg" style="margin-bottom: var(--spacing-4);">Add New Dish</h1>
+        <form action="/menu" method="POST" enctype="multipart/form-data">
+            <div class="input-group">
+                <label class="input-label" for="name">Dish Name</label>
+                <input type="text" id="name" name="menuItem[name]" class="input-field" required>
+            </div>
+            <div class="input-group">
+                <label class="input-label" for="description">Description</label>
+                <input type="text" id="description" name="menuItem[description]" class="input-field" required>
+            </div>
+            <div style="display: flex; gap: var(--spacing-4);">
+                <div class="input-group" style="flex: 1;">
+                    <label class="input-label" for="price">Price (₹)</label>
+                    <input type="number" step="0.01" id="price" name="menuItem[price]" class="input-field" required>
+                </div>
+                <div class="input-group" style="flex: 1;">
+                    <label class="input-label" for="category">Category</label>
+                    <input type="text" id="category" name="menuItem[category]" class="input-field" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <label class="input-label" for="image">Dish Image</label>
+                <input type="file" id="image" name="image" class="input-field">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Add to Menu</button>
+        </form>
+    </div>
+</div>

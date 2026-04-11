@@ -1,0 +1,31 @@
+const MenuItem = require('../models/MenuItem');
+const { cloudinary } = require('../cloudinary');
+
+module.exports.renderNewForm = (req, res) => {
+    res.render('menu/new');
+};
+
+module.exports.createItem = async (req, res) => {
+    const item = new MenuItem(req.body.menuItem);
+    item.restaurant = req.user._id;
+    if(req.file) {
+        item.image = { url: req.file.path, filename: req.file.filename };
+    } else {
+        item.image = { url: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80', filename: 'default' };
+    }
+    await item.save();
+    req.flash('success', 'Successfully made a new menu item!');
+    res.redirect(`/restaurants/${item.restaurant}`);
+};
+
+module.exports.deleteItem = async (req, res) => {
+    const { id } = req.params;
+    const item = await MenuItem.findById(id);
+    const restaurantId = item.restaurant;
+    if(item.image && item.image.filename !== 'default') {
+        await cloudinary.uploader.destroy(item.image.filename);
+    }
+    await MenuItem.findByIdAndDelete(id);
+    req.flash('success', 'Successfully deleted menu item');
+    res.redirect(`/restaurants/${restaurantId}`);
+};

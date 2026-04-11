@@ -1,0 +1,39 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="container section">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--spacing-10);">
+        <h2 class="headline-lg">Our Collection</h2>
+        <div class="filters">
+            <% if(currentUser && currentUser.role === 'restaurant') { %>
+                <a href="/menu/new" class="btn btn-primary" style="padding: 0.5rem 1rem;">+ Add New Dish</a>
+            <% } %>
+        </div>
+    </div>
+
+    <% if(items.length === 0) { %>
+        <p class="body-md">No items currently available. Check back soon!</p>
+    <% } else { %>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--spacing-10);">
+            <% for(let item of items) { %>
+                <div class="card">
+                    <img src="<%= item.image.url %>" alt="<%= item.name %>" class="card-img">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--spacing-2);">
+                        <h3 class="title-md"><%= item.name %></h3>
+                        <span style="font-weight: 700; color: var(--primary);">₹<%= item.price.toFixed(2) %></span>
+                    </div>
+                    <p class="body-sm" style="margin-bottom: var(--spacing-4);"><%= item.description %></p>
+                    
+                    <% if(currentUser && currentUser.role === 'restaurant') { %>
+                        <form action="/menu/<%=item._id%>?_method=DELETE" method="POST">
+                            <button class="btn btn-secondary" style="width: 100%; color: red;">Delete Dish</button>
+                        </form>
+                    <% } else { %>
+                        <form action="/orders/cart/<%=item._id%>" method="POST">
+                            <button class="btn btn-secondary" style="width: 100%;">Add to Cart</button>
+                        </form>
+                    <% } %>
+                </div>
+            <% } %>
+        </div>
+    <% } %>
+</div>
