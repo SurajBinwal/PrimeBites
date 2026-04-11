@@ -1,0 +1,39 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="container section">
+    <div class="card" style="margin: 0 auto; max-width: 600px;">
+        <h1 class="headline-lg" style="margin-bottom: var(--spacing-4);">Edit Dish</h1>
+        <form action="/menu/<%= item._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+            
+            <% if(item.image && item.image.url) { %>
+                <div style="margin-bottom: var(--spacing-6); text-align: center; border-radius: var(--radius-md); overflow: hidden; background-color: var(--surface-container-lowest);">
+                    <img src="<%= item.image.url %>" alt="Current Dish Image" style="width: 100%; height: 250px; object-fit: cover;">
+                </div>
+            <% } %>
+
+            <div class="input-group">
+                <label class="input-label" for="name">Dish Name</label>
+                <input type="text" id="name" name="menuItem[name]" value="<%= item.name %>" class="input-field" required>
+            </div>
+            <div class="input-group">
+                <label class="input-label" for="description">Description</label>
+                <input type="text" id="description" name="menuItem[description]" value="<%= item.description %>" class="input-field" required>
+            </div>
+            <div style="display: flex; gap: var(--spacing-4);">
+                <div class="input-group" style="flex: 1;">
+                    <label class="input-label" for="price">Price (₹)</label>
+                    <input type="number" step="0.01" id="price" name="menuItem[price]" value="<%= item.price %>" class="input-field" required>
+                </div>
+                <div class="input-group" style="flex: 1;">
+                    <label class="input-label" for="category">Category</label>
+                    <input type="text" id="category" name="menuItem[category]" value="<%= item.category %>" class="input-field" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <label class="input-label" for="image">Update Dish Image</label>
+                <input type="file" id="image" name="image" class="input-field">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Update Menu Item</button>
+        </form>
+    </div>
+</div>

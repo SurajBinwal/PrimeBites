@@ -13,4 +13,8 @@ router.get('/new', isLoggedIn, isRestaurant, menuController.renderNewForm);
 
 router.delete('/:id', isLoggedIn, isRestaurant, isMenuAuthor, menuController.deleteItem);
 
+router.get('/:id/edit', isLoggedIn, isRestaurant, isMenuAuthor, menuController.renderEditForm);
+
+router.put('/:id', isLoggedIn, isRestaurant, isMenuAuthor, upload.single('image'), validateMenuItem, menuController.updateItem);
+
 module.exports = router;

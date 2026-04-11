@@ -41,9 +41,12 @@ const divStyle = `height: 350px; width: 100%; position: relative; border-radius:
                     <p class="body-sm" style="margin-bottom: var(--spacing-4);"><%= item.description %></p>
                     
                     <% if(currentUser && currentUser._id.equals(restaurant._id)) { %>
-                        <form action="/menu/<%=item._id%>?_method=DELETE" method="POST">
-                            <button class="btn btn-secondary" style="width: 100%; color: red;">Delete Dish</button>
-                        </form>
+                        <div style="display: flex; gap: var(--spacing-2);">
+                            <a href="/menu/<%=item._id%>/edit" class="btn btn-primary" style="flex: 1; text-align: center;">Edit</a>
+                            <form action="/menu/<%=item._id%>?_method=DELETE" method="POST" style="flex: 1;">
+                                <button class="btn btn-secondary" style="width: 100%; color: red;">Delete</button>
+                            </form>
+                        </div>
                     <% } else { %>
                         <form action="/orders/cart/<%=item._id%>" method="POST">
                             <button class="btn btn-secondary" style="width: 100%;">Add to Cart</button>

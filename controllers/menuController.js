@@ -29,3 +29,27 @@ module.exports.deleteItem = async (req, res) => {
     req.flash('success', 'Successfully deleted menu item');
     res.redirect(`/restaurants/${restaurantId}`);
 };
+
+module.exports.renderEditForm = async (req, res) => {
+    const { id } = req.params;
+    const item = await MenuItem.findById(id);
+    if (!item) {
+        req.flash('error', 'Cannot find that menu item!');
+        return res.redirect(`/restaurants/${req.user._id}`);
+    }
+    res.render('menu/edit', { item });
+};
+
+module.exports.updateItem = async (req, res) => {
+    const { id } = req.params;
+    const item = await MenuItem.findByIdAndUpdate(id, { ...req.body.menuItem });
+    if(req.file) {
+        if(item.image && item.image.filename !== 'default') {
+            await cloudinary.uploader.destroy(item.image.filename);
+        }
+        item.image = { url: req.file.path, filename: req.file.filename };
+    }
+    await item.save();
+    req.flash('success', 'Successfully updated menu item!');
+    res.redirect(`/restaurants/${item.restaurant}`);
+};
