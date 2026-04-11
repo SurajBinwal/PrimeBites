@@ -18,7 +18,7 @@ module.exports.storeReturnTo = (req, res, next) => {
 };
 
 module.exports.isRestaurant = (req, res, next) => {
-    if (req.user && req.user.role === 'restaurant') {
+    if (req.user && (req.user.role === 'restaurant' || req.user.role === 'admin')) {
         return next();
     }
     req.flash('error', 'You do not have permission to do that!');
@@ -26,6 +26,7 @@ module.exports.isRestaurant = (req, res, next) => {
 };
 
 module.exports.isMenuAuthor = async (req, res, next) => {
+    if (req.user && req.user.role === 'admin') return next();
     const { id } = req.params;
     const item = await MenuItem.findById(id);
     if (!item.restaurant.equals(req.user._id)) {

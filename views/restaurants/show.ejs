@@ -17,8 +17,8 @@ const divStyle = `height: 350px; width: 100%; position: relative; border-radius:
     <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--spacing-10);">
         <h2 class="headline-lg">Our Collection</h2>
         <div class="filters">
-            <% if(currentUser && currentUser._id.equals(restaurant._id)) { %>
-                <a href="/menu/new" class="btn btn-primary" style="padding: 0.5rem 1rem;">+ Add New Dish</a>
+            <% if(currentUser && (currentUser._id.equals(restaurant._id) || currentUser.role === 'admin')) { %>
+                <a href="/menu/new?restaurantId=<%= restaurant._id %>" class="btn btn-primary" style="padding: 0.5rem 1rem;">+ Add New Dish</a>
             <% } %>
         </div>
     </div>
@@ -40,7 +40,7 @@ const divStyle = `height: 350px; width: 100%; position: relative; border-radius:
                     </div>
                     <p class="body-sm" style="margin-bottom: var(--spacing-4);"><%= item.description %></p>
                     
-                    <% if(currentUser && currentUser._id.equals(restaurant._id)) { %>
+                    <% if(currentUser && (currentUser._id.equals(restaurant._id) || currentUser.role === 'admin')) { %>
                         <div style="display: flex; gap: var(--spacing-2);">
                             <a href="/menu/<%=item._id%>/edit" class="btn btn-primary" style="flex: 1; text-align: center;">Edit</a>
                             <form action="/menu/<%=item._id%>?_method=DELETE" method="POST" style="flex: 1;">

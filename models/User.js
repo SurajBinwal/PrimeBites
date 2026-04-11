@@ -10,7 +10,7 @@ const UserSchema = new Schema({
     },
     role: {
         type: String,
-        enum: ['customer', 'restaurant'],
+        enum: ['customer', 'restaurant', 'admin'],
         default: 'customer'
     },
     // Restaurant Specific Fields

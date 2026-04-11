@@ -4,6 +4,9 @@
     <div class="card" style="margin: 0 auto; max-width: 600px;">
         <h1 class="headline-lg" style="margin-bottom: var(--spacing-4);">Add New Dish</h1>
         <form action="/menu" method="POST" enctype="multipart/form-data">
+            <% if (currentUser && currentUser.role === 'admin' && typeof restaurantId !== 'undefined') { %>
+                <input type="hidden" name="restaurantId" value="<%= restaurantId %>">
+            <% } %>
             <div class="input-group">
                 <label class="input-label" for="name">Dish Name</label>
                 <input type="text" id="name" name="menuItem[name]" class="input-field" required>

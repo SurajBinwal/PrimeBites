@@ -2,12 +2,21 @@ const MenuItem = require('../models/MenuItem');
 const { cloudinary } = require('../cloudinary');
 
 module.exports.renderNewForm = (req, res) => {
-    res.render('menu/new');
+    const restaurantId = req.query.restaurantId;
+    res.render('menu/new', { restaurantId });
 };
 
 module.exports.createItem = async (req, res) => {
     const item = new MenuItem(req.body.menuItem);
-    item.restaurant = req.user._id;
+    if (req.user.role === 'admin') {
+        item.restaurant = req.body.restaurantId;
+        if (!item.restaurant) {
+            req.flash('error', 'Restaurant ID missing for admin creation!');
+            return res.redirect('back');
+        }
+    } else {
+        item.restaurant = req.user._id;
+    }
     if(req.file) {
         item.image = { url: req.file.path, filename: req.file.filename };
     } else {
