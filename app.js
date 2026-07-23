@@ -5,6 +5,7 @@ if (process.env.NODE_ENV !== "production") {
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const MongoStore = require("connect-mongo").default;
 const ejsMate = require('ejs-mate');
 const session = require('express-session');
 const flash = require('connect-flash');
@@ -20,9 +21,20 @@ const restaurantRoutes = require('./routes/restaurant');
 const menuRoutes = require('./routes/menu');
 const orderRoutes = require('./routes/order');
 
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/food_ordering_mvc')
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.log('Mongo Connection Error:', err));
+// mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/food_ordering_mvc')
+//     .then(() => console.log('MongoDB Connected'))
+//     .catch(err => console.log('Mongo Connection Error:', err));
+const dbUrl = process.env.ATLASDB_URL;
+
+async function main() {
+    await mongoose.connect(dbUrl);
+}
+
+main()
+    .then(() => {
+        console.log("MongoDB Atlas Connected");
+    })
+    .catch(err => console.log(err));
 
 const app = express();
 
@@ -36,15 +48,42 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
+// const sessionConfig = {
+//     name: 'session',
+//     secret: process.env.SESSION_SECRET || 'thisShouldBeABetterSecret!',
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//         httpOnly: true,
+//         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+//         maxAge: 1000 * 60 * 60 * 24 * 7
+//     }
+// };
+
+// app.use(session(sessionConfig));
+
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    crypto: {
+        secret: process.env.SESSION_SECRET,
+    },
+    touchAfter: 24 * 3600,
+});
+
+store.on("error", (err) => {
+    console.log("SESSION STORE ERROR", err);
+});
+
 const sessionConfig = {
-    name: 'session',
-    secret: process.env.SESSION_SECRET || 'thisShouldBeABetterSecret!',
+    store,
+    name: "session",
+    secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        maxAge: 1000 * 60 * 60 * 24 * 7
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
     }
 };
 
